@@ -1,0 +1,12 @@
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\bin\Debug\EmpresaTuLuz.exe.config
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.csprojResolveAssemblyReference.cache
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.LoginForm.resources
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.Properties.Resources.resources
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.csproj.GenerateResource.Cache
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\bin\Debug\EmpresaTuLuz.exe
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\bin\Debug\EmpresaTuLuz.pdb
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.exe
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.pdb
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.PrincipalForm.resources
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.RegistrarCliente.resources
+c:\users\cris\documents\visual studio 2015\Projects\EmpresaTuLuz\EmpresaTuLuz\obj\Debug\EmpresaTuLuz.RegistrarEmpleado.resources
