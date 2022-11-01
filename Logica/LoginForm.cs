@@ -38,12 +38,13 @@ namespace EmpresaTuLuz
                     {
                         Usuario user = new Usuario(usuario, password);
                         PrincipalForm ventanaPrincipal = new PrincipalForm(user);
+                        ventanaPrincipal.FormClosed += new FormClosedEventHandler(otherForm_FormClosed);
                         ventanaPrincipal.Show();
                         this.Hide();
                     }
                     else
                     {
-                        MessageBox.Show("Usuario inexsistente");
+                        MessageBox.Show("Usuario o contraseña incorrectos.");
                     }
                 }
                 catch (Exception)
@@ -51,6 +52,10 @@ namespace EmpresaTuLuz
                     MessageBox.Show("Error al consultar usuario");
                 }  
             }
+        }
+        void otherForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
         }
     }
 }

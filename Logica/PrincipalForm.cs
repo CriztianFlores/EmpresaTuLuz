@@ -17,6 +17,7 @@ namespace EmpresaTuLuz
         public PrincipalForm(Usuario user)
         {
             InitializeComponent();
+            lblUserInfo.Text += user.Username;
         }
 
         private void registrarClientesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,6 +54,23 @@ namespace EmpresaTuLuz
         {
             //RegistrarCliente ventanaClientes = new RegistrarCliente();
             //ventanaClientes.Show();
+        }
+
+        private void registrarProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMC_Cotizaciones ventana = new ABMC_Cotizaciones();
+            ventana.ShowDialog();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro que desea salir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                this.Close();
+
+            }
         }
     }
 }

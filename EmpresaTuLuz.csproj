@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EmpresaTuLuz</RootNamespace>
     <AssemblyName>EmpresaTuLuz</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,9 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\ProductoDAO.cs" />
     <Compile Include="DAO\ClienteDAO.cs" />
     <Compile Include="DAO\EmpleadoDAO.cs" />
     <Compile Include="DAO\ProveedorDAO.cs" />
+    <Compile Include="DAO\CotizacionDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="EmpresaTuLuzDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -60,11 +63,35 @@
     <Compile Include="Entidades\Empleado.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Logica\ABMC_Cotizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\ABMC_Cotizaciones.Designer.cs">
+      <DependentUpon>ABMC_Cotizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\AltaCotizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\AltaCotizaciones.Designer.cs">
+      <DependentUpon>AltaCotizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\ModificarCotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\ModificarCotizacion.Designer.cs">
+      <DependentUpon>ModificarCotizacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logica\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logica\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\ModificarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\ModificarUsuario.Designer.cs">
+      <DependentUpon>ModificarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Logica\PrincipalForm.cs">
       <SubType>Form</SubType>
@@ -98,8 +125,20 @@
     <Compile Include="Logica\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Logica\ABMC_Cotizaciones.resx">
+      <DependentUpon>ABMC_Cotizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\AltaCotizaciones.resx">
+      <DependentUpon>AltaCotizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\ModificarCotizacion.resx">
+      <DependentUpon>ModificarCotizacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Logica\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\ModificarUsuario.resx">
+      <DependentUpon>ModificarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Logica\PrincipalForm.resx">
       <DependentUpon>PrincipalForm.cs</DependentUpon>
@@ -112,6 +151,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Logica\Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>

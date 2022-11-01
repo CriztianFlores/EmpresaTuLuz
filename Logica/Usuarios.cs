@@ -1,5 +1,6 @@
 ﻿using EmpresaTuLuz.DAO;
 using EmpresaTuLuz.Entidades;
+using EmpresaTuLuz.Logica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,11 +19,11 @@ namespace EmpresaTuLuz
         public Empleados()
         {
             InitializeComponent();
+            
         }
 
         private void Usuarios_Load(object sender, EventArgs e)
         {
-            limpiarCampos();
             cargarGrilla();
             cargarComboEmpleado();
             btnActualizar.Enabled = false;
@@ -37,184 +38,53 @@ namespace EmpresaTuLuz
             //celdaDocumento.Value = u.
         }
 
-        public bool esUsuarioValido(int parametro)
-        {
-            //Variables para los datos
-            string nombreUser = txtUsuario.Text;
-            string passUser = txtPassword.Text;
-            int empleado_id = 0;
-            byte estado;
-            bool esInactivo = chkInactivo.Checked;
-            if (esInactivo)
-            {
-                estado = 1;
-            }
-            else
-            {
-                estado = 0;
-            }
-
-
-            //Validar espacios en blanco
-            bool tieneUsuario = false;
-            bool tienePassword = false;
-            bool tieneEmpleado = false;
-            bool passCoinciden = false;
-            bool existeEnLaGrilla = true;
-
-            if (txtUsuario.Text.Equals(""))
-            {
-                MessageBox.Show("Ingrese el nombre de usuario");
-                txtUsuario.Focus();
-            }
-            else
-            {
-                tieneUsuario = true;
-            }
-
-            if (txtPassword.Text.Equals(""))
-            {
-                MessageBox.Show("Ingrese el password de usuario");
-                txtPassword.Focus();
-            }
-            else
-            {
-                tienePassword = true;
-            }
-
-            if (!txtPassword.Text.Equals(txtRepetirPassword.Text))
-            {
-                MessageBox.Show("Las passwords no coinciden");
-            }
-            else
-            {
-                passCoinciden = true;
-            }
-
-            if (cbEmpleadoId.SelectedIndex == -1)
-            {
-                MessageBox.Show("Seleccione el id del empleado asociado al nuevo usuario");
-                cbEmpleadoId.Focus();
-            }
-            else
-            {
-                tieneEmpleado = true;
-                empleado_id = (int)cbEmpleadoId.SelectedValue;
-            }
-
-            if (tieneUsuario && tienePassword && tieneEmpleado && passCoinciden)
-            {
-                //Validar existencia en grilla
-                if(parametro != 1)
-                {
-                    existeEnLaGrilla = existeEnGrilla(nombreUser);
-                }
-                
-                if (existeEnLaGrilla)
-                {
-                    if (parametro == 1)
-                    {
-                        return true;
-                    }
-                    MessageBox.Show("El usuario ingresado ya existe. Ingrese otro usuario");
-                    limpiarCampos();
-                    txtUsuario.Focus();
-                }
-            }
-            return !existeEnLaGrilla;
-        }
         
 
         private void btnAgregarUsuario_Click(object sender, EventArgs e)
         {
-            if (esUsuarioValido(0))
-            {
-                
-                try
-                {
-                    int estado_invalido = 0;
-                    //Crear usuario
-                    if (chkInactivo.Checked)
-                    {
-                        estado_invalido = 1;
-                    }
-                    Usuario u = new Usuario(txtUsuario.Text, txtPassword.Text, (int)cbEmpleadoId.SelectedValue, estado_invalido);
-                    bool resultado = UsuarioDAO.registrarUsuario(u);
-                    if (resultado)
-                    {
-                        MessageBox.Show("Usuario registrado con exito");
-                        limpiarCampos();
-                        cargarGrilla();
-                        txtUsuario.Focus();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al registrar nuevo usuario");
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error al registrar nuevo usuario");
-                    txtUsuario.Focus();
-                }
-            }
+  
+            Usuario u = new Usuario();
+
+            ModificarUsuario modificarUsuario = new ModificarUsuario(u, 0);
+            modificarUsuario.FormClosed += new FormClosedEventHandler(otherForm_FormClosed);
+            modificarUsuario.Show();
+            
         }
 
         //Carga de componentes------------------------------------------------------------------------------
 
         private void cargarComboEmpleado()
         {
-            //Crear objeto conexion
-            string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
-            SqlConnection cn = new SqlConnection(cadenaConexion);
-            try
-            {
-                //Crear objeto sql command
-                SqlCommand cmd = new SqlCommand();
 
-                //Escribir consulta SQL
-                string consulta = "SELECT * FROM empleados";
-                cmd.Parameters.Clear();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = consulta;
+            DataTable tabla = EmpleadoDAO.obtenerTablaEmpleados();
 
-                cn.Open();
-                cmd.Connection = cn;
+         
 
-                DataTable tabla = new DataTable();
-                DataTable tabla1 = new DataTable();
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                SqlDataAdapter da1 = new SqlDataAdapter(cmd);
-                da.Fill(tabla);
-                da1.Fill(tabla1);
-
-                cbEmpleadoId.DataSource = tabla;
-                cbEmpleadoId.DisplayMember = "empleado_id";
-                cbEmpleadoId.ValueMember = "empleado_id";
-                cbEmpleadoId.SelectedIndex = -1;
-
-                cbBuscarEmpleado.DataSource = tabla1;
+                cbBuscarEmpleado.DataSource = tabla;
                 cbBuscarEmpleado.DisplayMember = "empleado_id";
                 cbBuscarEmpleado.ValueMember = "empleado_id";
                 cbBuscarEmpleado.SelectedIndex = -1;
 
 
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                cn.Close();
-            }
+  
         }
 
         private void cargarGrilla()
         {
-            grillaUsuarios.DataSource = UsuarioDAO.obtenerListadoUsuarios();
+            int estado;
+            if (rbtn_activos.Checked)
+            {
+                estado = 1;
+            }
+            else if (rbtn_inactivos.Checked)
+            {
+                estado = 0;
+            }
+            else
+            {
+                estado = 2;
+            }
+            grillaUsuarios.DataSource = UsuarioDAO.obtenerListadoUsuarios(estado);
         }
 
         private bool existeEnGrilla(string criterioABuscar)
@@ -231,29 +101,6 @@ namespace EmpresaTuLuz
             return resultado;
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            limpiarCampos();
-        }
-
-        private void limpiarCampos()
-        {
-            
-            txtUsuario.Text = "";
-            txtPassword.Text = "";
-            txtRepetirPassword.Text = "";
-            chkInactivo.Checked = false;
-            cbEmpleadoId.SelectedIndex = -1;
-
-            if (btnActualizar.Enabled)
-            {
-                btnActualizar.Enabled = false;
-                btnEliminar.Enabled = false;
-                btnAgregarUsuario.Enabled = true;
-            }
-            
-        }
-
         private void grillaUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int indice = e.RowIndex;
@@ -261,141 +108,79 @@ namespace EmpresaTuLuz
             {
                 btnActualizar.Enabled = true;
                 btnEliminar.Enabled = true;
-                btnAgregarUsuario.Enabled = false;
                 DataGridViewRow filaSeleccionada = grillaUsuarios.Rows[indice];
-                string usuario = filaSeleccionada.Cells["usuario_nombre"].Value.ToString();
-                Usuario u = obtenerUsuario(usuario);
+                int usuario = int.Parse(filaSeleccionada.Cells["usuario_id"].Value.ToString());
+                Usuario u = UsuarioDAO.obtenerUsuarioById(usuario);
                 cargarCampos(u);
             }
                 
         }
 
-        private Usuario obtenerUsuario(string usuario)
-        {
-            string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
-            SqlConnection cn = new SqlConnection(cadenaConexion);
-            Usuario u = new Usuario();
-            try
-            {
-                //Crear objeto sql command
-                SqlCommand cmd = new SqlCommand();
-
-                //Escribir consulta SQL
-                string consulta = "SELECT * FROM usuarios WHERE usuario_nombre like @usuario";
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@usuario",usuario);
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = consulta;
-
-                cn.Open();
-                cmd.Connection = cn;
-
-                SqlDataReader dr = cmd.ExecuteReader();
-                if(dr != null && dr.Read())
-                {
-                    u.Username = dr["usuario_nombre"].ToString();
-                    u.Password = dr["usuario_pass"].ToString();
-                    u.EmpleadoId = int.Parse(dr["empleado_id"].ToString());
-                    u.Activo = int.Parse(dr["usuario_activo"].ToString());
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                cn.Close();
-            }
-            return u;
-        }
-
+      
 
         private void cargarCampos(Usuario u)
         {
-            txtUsuario.Text = u.Username;
-            txtPassword.Text = u.Password;
-            txtRepetirPassword.Text = u.Password;
-            cbEmpleadoId.SelectedValue = u.EmpleadoId;
-            if(u.Activo == 0)
-            {
-                chkInactivo.Checked = true;
-            }
-            else
-            {
-                chkInactivo.Checked = false;
-            }
+
+            Empleado e = EmpleadoDAO.obtenerEmpleadoById(u.EmpleadoId);
+
+            txtEmpleadoNombre.Text = e.Nombre;
+            txtEmpleadoApellido.Text = e.Apellido;
+            txtEmpleadoTipoDni.Text = (e.TipoDoc == "1") ? "DNI" : "Pasaporte";
+            txtEmpleadoNumeroDni.Text = e.NumDoc;
+            btnEliminar.Text = u.Activo == 0 ? "Habilitar" : "Eliminar";
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Desea realmente modificar al usuario?", "Confirmacion", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (esUsuarioValido(1))
-                {
+            DataGridViewRow filaSeleccionada = grillaUsuarios.Rows[grillaUsuarios.CurrentCell.RowIndex];
+            int usuario = int.Parse(filaSeleccionada.Cells["usuario_id"].Value.ToString());
+            Usuario u = UsuarioDAO.obtenerUsuarioById(usuario);
 
-                    try
-                    {
-                        int estado_invalido = 0;
-                        int posicionSeleccionada = grillaUsuarios.CurrentRow.Index;
-                        DataGridViewRow filaSeleccionada = grillaUsuarios.Rows[posicionSeleccionada];
-                        int index = int.Parse(filaSeleccionada.Cells["usuario_id"].Value.ToString());
-                        //Crear usuario
-                        if (chkInactivo.Checked)
-                        {
-                            estado_invalido = 1;
-                        }
-                        Usuario u = new Usuario(txtUsuario.Text, txtPassword.Text, (int)cbEmpleadoId.SelectedValue, estado_invalido);
-                        bool resultado = UsuarioDAO.actualizarUsuario(u, index);
-                        if (resultado)
-                        {
-                            MessageBox.Show("Usuario modificado con exito");
-                            limpiarCampos();
-                            cargarGrilla();
-                            txtUsuario.Focus();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error al modificar usuario");
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Error al modificar usuario");
-                        txtUsuario.Focus();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No pasa nada");
-                }
+            ModificarUsuario modificarUsuario = new ModificarUsuario(u, usuario);
+            modificarUsuario.FormClosed += new FormClosedEventHandler(otherForm_FormClosed);
+            modificarUsuario.Show();
 
-            }
         }
-
+        void otherForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+            cargarGrilla();
+            cargarComboEmpleado();
+        }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            int posicionSeleccionada = grillaUsuarios.CurrentRow.Index;
+            DataGridViewRow filaSeleccionada = grillaUsuarios.Rows[posicionSeleccionada];
+            int index = int.Parse(filaSeleccionada.Cells["usuario_id"].Value.ToString());
+            string msg_confirmacion;
+            int value;
+            string msgExito;
+            if ((filaSeleccionada.Cells["usuario_activo"].Value.ToString() == "1")) { 
+             msg_confirmacion = "Seguro que desea eliminar el usuario: \n\n Nombre: " + filaSeleccionada.Cells["usuario_nombre"].Value.ToString() +
+                "\n\n ID: " + filaSeleccionada.Cells["usuario_id"].Value.ToString();
+                value = 0;
+                msgExito = "Usuario eliminado con exito";
+            }
+            else {
+                 msg_confirmacion = "Seguro que desea habilitar el usuario el usuario: \n\n Nombre: " + filaSeleccionada.Cells["usuario_nombre"].Value.ToString() +
+                  "\n\n ID: " + filaSeleccionada.Cells["usuario_id"].Value.ToString() + " \n\n Si se habilita el usuario podra acceder nuevamente al sistema.";
+                value = 1;
+                msgExito = "Usuario habilitado con exito";
+            }
+            DialogResult dialogResult = MessageBox.Show(msg_confirmacion, "Confirmacion", MessageBoxButtons.YesNo);
 
-            DialogResult dialogResult = MessageBox.Show("Desea realmente eliminar al usuario?", "Confirmacion", MessageBoxButtons.YesNo);
+            
             if (dialogResult == DialogResult.Yes)
             {
                 try
                 {
 
-                    int posicionSeleccionada = grillaUsuarios.CurrentRow.Index;
-                    DataGridViewRow filaSeleccionada = grillaUsuarios.Rows[posicionSeleccionada];
-                    int index = int.Parse(filaSeleccionada.Cells["usuario_id"].Value.ToString());
-
-
-                    bool resultado = UsuarioDAO.eliminarUsuario(index);
+                    bool resultado = UsuarioDAO.eliminarUsuario(index, value);
                     if (resultado)
                     {
-                        MessageBox.Show("Usuario eliminado con exito");
-                        limpiarCampos();
+                        MessageBox.Show(msgExito);
+                     
                         cargarGrilla();
-                        txtUsuario.Focus();
                     }
                     else
                     {
@@ -405,7 +190,6 @@ namespace EmpresaTuLuz
                 catch (Exception)
                 {
                     MessageBox.Show("Error al eliminar usuario");
-                    txtUsuario.Focus();
                 }
             }
             
@@ -471,6 +255,16 @@ namespace EmpresaTuLuz
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            cargarGrilla();
+        }
+
+        private void chkInactivo_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbtn_todos_CheckedChanged(object sender, EventArgs e)
         {
             cargarGrilla();
         }
