@@ -16,6 +16,7 @@ namespace EmpresaTuLuz.Logica
 {
     public partial class ABMC_Cotizaciones : Form
     {
+        private DataTable tablaCotizaciones;
         public ABMC_Cotizaciones()
         {
             InitializeComponent();
@@ -50,11 +51,13 @@ namespace EmpresaTuLuz.Logica
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(tabla);
-
+                    DataRow todosRow = tabla.NewRow();
+                    todosRow["descripcion"] = "Todos";
+                    tabla.Rows.Add(todosRow);
                     cmbEstados.DataSource = tabla;
                     cmbEstados.DisplayMember = "descripcion";
                     cmbEstados.ValueMember = "id_estado";
-                    cmbEstados.SelectedIndex = -1;
+                    cmbEstados.SelectedIndex = 4;
 
                 }
                 catch (Exception)
@@ -71,10 +74,10 @@ namespace EmpresaTuLuz.Logica
         public void CargarGrilla()
         {
             //Crear objeto conexion
-            DataTable tablaCotizaciones = CotizacionDAO.ObtenerCotizaciones();
+            tablaCotizaciones = CotizacionDAO.ObtenerCotizaciones();
             grillaCotizaciones.DataSource = tablaCotizaciones;
+       
 
- 
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -83,6 +86,21 @@ namespace EmpresaTuLuz.Logica
             ventana.FormClosed += new FormClosedEventHandler(actualizarGrilla);
 
             ventana.ShowDialog();
+        }
+        public void filtrarGrilla()
+        {
+            string vendedorFiltro = txtVendedor.Text == "" ? "" : "empleado_apellido LIKE '%" + txtVendedor.Text + "%'";
+            string clienteFiltro = txtCliente.Text == "" ? "" : "apellidoCliente LIKE '%" + txtCliente.Text + "%'";
+            string estadoFiltro = cmbEstados.Text == "Todos" ? "" :"estado = '" + cmbEstados.Text+"'";
+            string conector = vendedorFiltro != "" && clienteFiltro != ""? "AND " : "";
+            string conectorEstado = (vendedorFiltro != "" || clienteFiltro != "") && estadoFiltro != "" ? " AND " : "";
+            BindingSource bs = new BindingSource();
+            bs.DataSource = grillaCotizaciones.DataSource;
+            bs.Filter =  vendedorFiltro + conector + clienteFiltro + conectorEstado + estadoFiltro ;
+            grillaCotizaciones.DataSource = bs;
+
+         
+
         }
         void actualizarGrilla(object sender, FormClosedEventArgs e)
         {
@@ -108,6 +126,11 @@ namespace EmpresaTuLuz.Logica
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            filtrarGrilla();
+        }
+
+        private void lblNumero_Click(object sender, EventArgs e)
         {
 
         }

@@ -40,14 +40,16 @@ namespace EmpresaTuLuz
 
         private void proveedoresToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //Proveedores ventanaProveedores = new Proveedores();
-            //ventanaProveedores.Show();
+            ABMC_Proveedores ventanaProveedores = new ABMC_Proveedores();
+            ventanaProveedores.Show();
         }
 
         private void empleadosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //Empleados ventanaEmpleados = new Empleados();
             //ventanaEmpleados.Show();
+            ABMC_Empleados ventana = new ABMC_Empleados();
+            ventana.ShowDialog();
         }
 
         private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -71,6 +73,41 @@ namespace EmpresaTuLuz
                 this.Close();
 
             }
+        }
+
+        private void ventaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void verVentasRealizadasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VerVentas ventana = new VerVentas();
+            ventana.ShowDialog();
+        }
+
+        private void registrarNuevaVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RegistrarVenta ventana = new RegistrarVenta();
+            ventana.ShowDialog();
+        }
+
+        private void estadisticasDeVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteEstadisticaVentas ventana = new ReporteEstadisticaVentas();
+            ventana.ShowDialog();
+        }
+
+        private void listadoCotizacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteListadoCotizaciones ventana = new ReporteListadoCotizaciones();
+            ventana.ShowDialog();
+        }
+
+        private void listadoVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteListadoVentas ventana = new ReporteListadoVentas();
+            ventana.ShowDialog();
         }
     }
 }

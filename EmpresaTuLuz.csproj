@@ -13,6 +13,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,9 +49,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,12 +82,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\ProductoDAO.cs" />
+    <Compile Include="EmpresaTuLuz2DataSet.cs">
+      <DependentUpon>EmpresaTuLuz2DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresaTuLuz2DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpresaTuLuz2DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresaTuLuz2DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpresaTuLuz2DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\ABMC_Empleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\ABMC_Empleados.designer.cs">
+      <DependentUpon>ABMC_Empleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\ABMC_Proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\ABMC_Proveedores.designer.cs">
+      <DependentUpon>ABMC_Proveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\AltaCotizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\AltaCotizaciones.designer.cs">
+      <DependentUpon>AltaCotizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\AltaVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\AltaVenta.designer.cs">
+      <DependentUpon>AltaVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\Clientes.designer.cs">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\Empleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\Empleados.designer.cs">
+      <DependentUpon>Empleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\ABMC_Cotizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\ABMC_Cotizaciones.designer.cs">
+      <DependentUpon>ABMC_Cotizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConjuntoDeDatos\DatosEstadistica.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatosEstadistica.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\BarrioDAO.cs" />
     <Compile Include="DAO\ClienteDAO.cs" />
-    <Compile Include="DAO\EmpleadoDAO.cs" />
-    <Compile Include="DAO\ProveedorDAO.cs" />
     <Compile Include="DAO\CotizacionDAO.cs" />
+    <Compile Include="DAO\EmpleadoDAO.cs" />
+    <Compile Include="DAO\ProductoDAO.cs" />
+    <Compile Include="DAO\ProveedorDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
+    <Compile Include="DAO\VentaDAO.cs" />
+    <Compile Include="DAO\VentasDAO.cs" />
     <Compile Include="EmpresaTuLuzDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,79 +160,127 @@
     <Compile Include="Entidades\Empleado.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
     <Compile Include="Entidades\Usuario.cs" />
-    <Compile Include="Logica\ABMC_Cotizaciones.cs">
+    <Compile Include="Logica\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\ABMC_Cotizaciones.Designer.cs">
-      <DependentUpon>ABMC_Cotizaciones.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Logica\AltaCotizaciones.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Logica\AltaCotizaciones.Designer.cs">
-      <DependentUpon>AltaCotizaciones.cs</DependentUpon>
+    <Compile Include="Logica\LoginForm.designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Logica\ModificarCotizacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\ModificarCotizacion.Designer.cs">
+    <Compile Include="Logica\ModificarCotizacion.designer.cs">
       <DependentUpon>ModificarCotizacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logica\LoginForm.cs">
+    <Compile Include="Logica\ModificarEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <Compile Include="Logica\ModificarEmpleado.designer.cs">
+      <DependentUpon>ModificarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\ModificarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\ModificarProveedor.designer.cs">
+      <DependentUpon>ModificarProveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="Logica\ModificarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\ModificarUsuario.Designer.cs">
+    <Compile Include="Logica\ModificarUsuario.designer.cs">
       <DependentUpon>ModificarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Logica\PrincipalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\PrincipalForm.Designer.cs">
+    <Compile Include="Logica\PrincipalForm.designer.cs">
       <DependentUpon>PrincipalForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Logica\Proveedores.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Logica\Proveedores.Designer.cs">
-      <DependentUpon>Proveedores.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Logica\Clientes.cs">
+    <Compile Include="Logica\Proveedores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\Clientes.Designer.cs">
-      <DependentUpon>Clientes.cs</DependentUpon>
+    <Compile Include="Logica\Proveedores.designer.cs">
+      <DependentUpon>Proveedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logica\Empleados.cs">
+    <Compile Include="PROYECTODataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PROYECTODataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\RegistrarVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\Empleados.Designer.cs">
-      <DependentUpon>Empleados.cs</DependentUpon>
+    <Compile Include="Logica\RegistrarVenta.designer.cs">
+      <DependentUpon>RegistrarVenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteEstadisticaVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteEstadisticaVentas.Designer.cs">
+      <DependentUpon>ReporteEstadisticaVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteListadoCotizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteListadoCotizaciones.Designer.cs">
+      <DependentUpon>ReporteListadoCotizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteListadoVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteListadoVentas.Designer.cs">
+      <DependentUpon>ReporteListadoVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Logica\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logica\Usuarios.Designer.cs">
+    <Compile Include="Logica\Usuarios.designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Logica\ABMC_Cotizaciones.resx">
-      <DependentUpon>ABMC_Cotizaciones.cs</DependentUpon>
+    <Compile Include="Logica\VerVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\VerVentas.designer.cs">
+      <DependentUpon>VerVentas.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Logica\ABMC_Empleados.resx">
+      <DependentUpon>ABMC_Empleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\ABMC_Proveedores.resx">
+      <DependentUpon>ABMC_Proveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Logica\AltaCotizaciones.resx">
       <DependentUpon>AltaCotizaciones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Logica\AltaVenta.resx">
+      <DependentUpon>AltaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\Clientes.resx">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\Empleados.resx">
+      <DependentUpon>Empleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\ABMC_Cotizaciones.resx">
+      <DependentUpon>ABMC_Cotizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EstadisticaProducto.rdlc" />
+    <EmbeddedResource Include="listadoCotizaciones.rdlc" />
+    <EmbeddedResource Include="listadoVentas.rdlc" />
+    <EmbeddedResource Include="Logica\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Logica\ModificarCotizacion.resx">
       <DependentUpon>ModificarCotizacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Logica\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="Logica\ModificarEmpleado.resx">
+      <DependentUpon>ModificarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\ModificarProveedor.resx">
+      <DependentUpon>ModificarProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Logica\ModificarUsuario.resx">
       <DependentUpon>ModificarUsuario.cs</DependentUpon>
@@ -153,15 +298,60 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Logica\Clientes.resx">
-      <DependentUpon>Clientes.cs</DependentUpon>
+    <EmbeddedResource Include="Logica\Proveedores.resx">
+      <DependentUpon>Proveedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Logica\Empleados.resx">
-      <DependentUpon>Empleados.cs</DependentUpon>
+    <EmbeddedResource Include="Logica\RegistrarVenta.resx">
+      <DependentUpon>RegistrarVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteEstadisticaVentas.resx">
+      <DependentUpon>ReporteEstadisticaVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteListadoCotizaciones.resx">
+      <DependentUpon>ReporteListadoCotizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteListadoVentas.resx">
+      <DependentUpon>ReporteListadoVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Logica\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Logica\VerVentas.resx">
+      <DependentUpon>VerVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ConjuntoDeDatos\DatosEstadistica.xsc">
+      <DependentUpon>DatosEstadistica.xsd</DependentUpon>
+    </None>
+    <None Include="ConjuntoDeDatos\DatosEstadistica.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatosEstadistica.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ConjuntoDeDatos\DatosEstadistica.xss">
+      <DependentUpon>DatosEstadistica.xsd</DependentUpon>
+    </None>
+    <None Include="EmpresaTuLuz2DataSet.xsc">
+      <DependentUpon>EmpresaTuLuz2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmpresaTuLuz2DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmpresaTuLuz2DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EmpresaTuLuz2DataSet.xss">
+      <DependentUpon>EmpresaTuLuz2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmpresaTuLuz2DataSet1.xsc">
+      <DependentUpon>EmpresaTuLuz2DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="EmpresaTuLuz2DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmpresaTuLuz2DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EmpresaTuLuz2DataSet1.xss">
+      <DependentUpon>EmpresaTuLuz2DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="EmpresaTuLuzDataSet.xsc">
       <DependentUpon>EmpresaTuLuzDataSet.xsd</DependentUpon>
     </None>
@@ -173,6 +363,7 @@
     <None Include="EmpresaTuLuzDataSet.xss">
       <DependentUpon>EmpresaTuLuzDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -182,9 +373,47 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="PROYECTODataSet.xsc">
+      <DependentUpon>PROYECTODataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PROYECTODataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PROYECTODataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PROYECTODataSet.xss">
+      <DependentUpon>PROYECTODataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

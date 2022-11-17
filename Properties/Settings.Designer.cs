@@ -33,5 +33,16 @@ namespace EmpresaTuLuz.Properties {
                 return ((string)(this["EmpresaTuLuzConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-74FLCP1\\SQLEXPRESS;Initial Catalog=EmpresaTuLuz2;Integrated S" +
+            "ecurity=True")]
+        public string PROYECTOConnectionString {
+            get {
+                return ((string)(this["PROYECTOConnectionString"]));
+            }
+        }
     }
 }

@@ -59,6 +59,8 @@ namespace EmpresaTuLuz.Logica
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
+                cmbIdCliente.SelectedIndexChanged -= new EventHandler(cmbIdCliente_SelectedIndexChanged);
+
                 //Crear objeto sql command
                 SqlCommand cmd = new SqlCommand();
 
@@ -80,6 +82,8 @@ namespace EmpresaTuLuz.Logica
                 cmbIdCliente.DisplayMember = "cliente_apellido";
                 cmbIdCliente.ValueMember = "cliente_id";
                 cmbIdCliente.SelectedIndex = -1;
+                cmbIdCliente.SelectedIndexChanged += new EventHandler(cmbIdCliente_SelectedIndexChanged);
+
 
             }
             catch (Exception)
@@ -137,7 +141,7 @@ namespace EmpresaTuLuz.Logica
         }
         private void CargarComboVendedor()
         {
-
+            cmbVendedor.SelectedIndexChanged -= new EventHandler(cmbVendedor_SelectedIndexChanged);
             //Crear objeto conexion
             string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
             SqlConnection cn = new SqlConnection(cadenaConexion);
@@ -164,6 +168,8 @@ namespace EmpresaTuLuz.Logica
                 cmbVendedor.DisplayMember = "empleado_apellido";
                 cmbVendedor.ValueMember = "empleado_id";
                 cmbVendedor.SelectedIndex = -1;
+                cmbVendedor.SelectedIndexChanged += new EventHandler(cmbVendedor_SelectedIndexChanged);
+
 
             }
             catch (Exception)
@@ -186,6 +192,8 @@ namespace EmpresaTuLuz.Logica
             SqlConnection cn = new SqlConnection(cadenaConexion);
             try
             {
+                cmbProducto.SelectedIndexChanged -= new EventHandler(cmbProducto_SelectedIndexChanged);
+
                 //Crear objeto sql command
                 SqlCommand cmd = new SqlCommand();
 
@@ -207,6 +215,8 @@ namespace EmpresaTuLuz.Logica
                 cmbProducto.DisplayMember = "nombre";
                 cmbProducto.ValueMember = "id";
                 cmbProducto.SelectedIndex = -1;
+                cmbProducto.SelectedIndexChanged += new EventHandler(cmbProducto_SelectedIndexChanged);
+
 
             }
             catch (Exception)
@@ -360,7 +370,7 @@ namespace EmpresaTuLuz.Logica
 
         private void cmbIdCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            cmbIdCliente_SelectionChangeCommitted(sender, e);
         }
 
         private void cmbIdCliente_SelectionChangeCommitted(object sender, EventArgs e)
@@ -452,7 +462,14 @@ namespace EmpresaTuLuz.Logica
 
         private void cmbVendedor_SelectedIndexChanged(object sender, EventArgs e)
         {
+         
+                cmbVendedor_SelectionChangeCommitted(sender,  e);
+            
+        }
 
+        private void cmbProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbProducto_SelectionChangeCommitted(sender, e);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace EmpresaTuLuz.Entidades
 {
     class Empleado
     {
+        private int _id;
         private string _nombre;
         private string _apellido;
         private string _tipo_doc;
@@ -18,8 +19,9 @@ namespace EmpresaTuLuz.Entidades
         private int _jefe_id;
         private bool _activo;
 
-        public Empleado(string nombre, string apellido, string tipo_doc, string num_doc, string direccion,int id_barrio, string telefono, int jefe_id, bool activo)
+        public Empleado(int id, string nombre, string apellido, string tipo_doc, string num_doc, string direccion,int id_barrio, string telefono, int jefe_id, bool activo)
         {
+            _id = id;
             _nombre = nombre;
             _apellido = apellido;
             _tipo_doc = tipo_doc;
@@ -35,7 +37,7 @@ namespace EmpresaTuLuz.Entidades
         {
 
         }
-
+        public int Id { get { return _id; } set { _id = value; } }
         public string Nombre { get { return _nombre; } set { _nombre = value; } }
         public string Apellido { get { return _apellido; } set { _apellido = value; } }
         public string TipoDoc { get { return _tipo_doc; } set { _tipo_doc = value; } }

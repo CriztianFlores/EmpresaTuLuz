@@ -1,13 +1,15 @@
-﻿using System;
+﻿using EmpresaTuLuz.DAO;
+using EmpresaTuLuz.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EmpresaTuLuz.Entidades;
 
 namespace EmpresaTuLuz
 {
@@ -21,10 +23,36 @@ namespace EmpresaTuLuz
         private void RegistrarEmpleado_Load(object sender, EventArgs e)
         {
             limpiarCampos();
+            CargarCombos();
+            CargarGrilla();
+
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            Empleado emp = new Empleado();
+
+            emp.NumDoc = txtNumDoc.Text;
+            emp.TipoDoc = (cbTipoDoc.SelectedValue).ToString();
+            emp.Nombre = txtNombre.Text;
+            emp.Apellido = txtApellido.Text;
+            emp.Direccion = txtDireccion.Text;
+            emp.IdBarrio = (int)cbBarrio.SelectedValue;
+            emp.Telefono = txtTelefono.Text;
+            if (chkNoTieneJefe.Checked)
+            {
+                //emp.JefeId = null;
+            }
+            else
+            {
+                emp.JefeId = (int)cbIdJefe.SelectedValue;
+            }
+            emp.Activo = true;
+
+            EmpleadoDAO.RegistrarEmpleado(emp);
+            CargarGrilla();
+            limpiarCampos();
+            /*
             string resultado = "";
             //Variables para crear objeto
             string nombre = txtNombre.Text;
@@ -93,12 +121,13 @@ namespace EmpresaTuLuz
                 //Crear objeto Empleado
                 //Empleado emp = new Empleado(nombre, apellido);
                 //agregarEmpleado(emp);
-            }
+            }*/
 
         }
 
         private void agregarEmpleado(Empleado emp)
         {
+            /*
             //Creo una fila
             DataGridViewRow fila = new DataGridViewRow();
 
@@ -119,7 +148,7 @@ namespace EmpresaTuLuz
 
             MessageBox.Show("Persona agregada con exito");
             limpiarCampos();
-            txtNombre.Focus();
+            txtNombre.Focus();*/
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -166,6 +195,106 @@ namespace EmpresaTuLuz
                 }
             }
             return resultado;
+        }
+        private void CargarComboTipoDocumento()
+        {
+            //Crear objeto conexion
+            string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            try
+            {
+                //Crear objeto sql command
+                SqlCommand cmd = new SqlCommand();
+
+                //Escribir consulta SQL
+                string consulta = "SELECT * FROM tipos_doc";
+                cmd.Parameters.Clear();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                cn.Open();
+                cmd.Connection = cn;
+
+                DataTable tabla = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                cbTipoDoc.DataSource = tabla;
+                cbTipoDoc.DisplayMember = "siglas";
+                cbTipoDoc.ValueMember = "tipo_doc_id";
+                cbTipoDoc.SelectedIndex = -1;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+        private void CargarComboBarrio()
+        {
+            //Crear objeto conexion
+            string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            try
+            {
+                //Crear objeto sql command
+                SqlCommand cmd = new SqlCommand();
+
+                //Escribir consulta SQL
+                string consulta = "SELECT * FROM barrios";
+                cmd.Parameters.Clear();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                cn.Open();
+                cmd.Connection = cn;
+
+                DataTable tabla = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                cbBarrio.DataSource = tabla;
+                cbBarrio.DisplayMember = "nombre";
+                cbBarrio.ValueMember = "barrio_id";
+                cbBarrio.SelectedIndex = -1;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+        private void CargarComboIdJefe()
+        {
+            DataTable tabla = EmpleadoDAO.obtenerListadoEmpleadosActivos();
+
+            cbIdJefe.DataSource = tabla;
+            cbIdJefe.DisplayMember = "empleado_id";
+            cbIdJefe.ValueMember = "empleado_id";
+            cbIdJefe.SelectedIndex = -1;
+
+        }
+        private void CargarCombos()
+        {
+            CargarComboTipoDocumento();
+            CargarComboBarrio();
+            CargarComboIdJefe();
+        }
+        private void CargarGrilla()
+        {
+            gdrEmpleados.DataSource = EmpleadoDAO.obtenerListadoEmpleadosActivos();
         }
     }
 }

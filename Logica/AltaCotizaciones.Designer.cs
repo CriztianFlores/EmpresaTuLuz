@@ -39,35 +39,35 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.groupBoxCotizacion = new System.Windows.Forms.GroupBox();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.txtTotal = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.lblApellidoCliente = new System.Windows.Forms.Label();
-            this.grillaProductos = new System.Windows.Forms.DataGridView();
-            this.btnAgregarProducto = new System.Windows.Forms.Button();
-            this.lblCantidad = new System.Windows.Forms.Label();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.cmbProducto = new System.Windows.Forms.ComboBox();
-            this.lblProducto = new System.Windows.Forms.Label();
-            this.btnGuardarCotizacion = new System.Windows.Forms.Button();
-            this.lblClienteNombre = new System.Windows.Forms.Label();
-            this.lblClienteCuit = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.gpVendedor = new System.Windows.Forms.GroupBox();
-            this.lblVendedorNombre_ = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblVendedorDni = new System.Windows.Forms.Label();
-            this.lblVendedorNombre = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblProductoPrecio = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnAgregarProducto = new System.Windows.Forms.Button();
+            this.grillaProductos = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblProducto = new System.Windows.Forms.Label();
+            this.cmbProducto = new System.Windows.Forms.ComboBox();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblApellidoCliente = new System.Windows.Forms.Label();
+            this.btnGuardarCotizacion = new System.Windows.Forms.Button();
+            this.lblClienteNombre = new System.Windows.Forms.Label();
+            this.lblClienteCuit = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.gpVendedor = new System.Windows.Forms.GroupBox();
+            this.lblVendedorNombre = new System.Windows.Forms.Label();
+            this.lblVendedorDni = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblVendedorNombre_ = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBoxCotizacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProductos)).BeginInit();
             this.gpVendedor.SuspendLayout();
@@ -140,6 +140,8 @@
             // 
             // cmbIdCliente
             // 
+            this.cmbIdCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbIdCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbIdCliente.FormattingEnabled = true;
             this.cmbIdCliente.Location = new System.Drawing.Point(80, 22);
             this.cmbIdCliente.Margin = new System.Windows.Forms.Padding(2);
@@ -151,6 +153,8 @@
             // 
             // cmbVendedor
             // 
+            this.cmbVendedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbVendedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbVendedor.FormattingEnabled = true;
             this.cmbVendedor.Location = new System.Drawing.Point(85, 22);
             this.cmbVendedor.Margin = new System.Windows.Forms.Padding(2);
@@ -205,25 +209,13 @@
             this.groupBoxCotizacion.TabStop = false;
             this.groupBoxCotizacion.Text = "Productos";
             // 
-            // lblTotal
+            // txtObservaciones
             // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(340, 303);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(44, 20);
-            this.lblTotal.TabIndex = 18;
-            this.lblTotal.Text = "Total";
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Enabled = false;
-            this.txtTotal.Location = new System.Drawing.Point(385, 301);
-            this.txtTotal.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(92, 20);
-            this.txtTotal.TabIndex = 19;
+            this.txtObservaciones.Location = new System.Drawing.Point(128, 325);
+            this.txtObservaciones.Margin = new System.Windows.Forms.Padding(2);
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(349, 20);
+            this.txtObservaciones.TabIndex = 15;
             // 
             // label3
             // 
@@ -236,35 +228,37 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Observaciones";
             // 
-            // txtObservaciones
+            // lblProductoPrecio
             // 
-            this.txtObservaciones.Location = new System.Drawing.Point(128, 325);
-            this.txtObservaciones.Margin = new System.Windows.Forms.Padding(2);
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(349, 20);
-            this.txtObservaciones.TabIndex = 15;
+            this.lblProductoPrecio.AutoSize = true;
+            this.lblProductoPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductoPrecio.Location = new System.Drawing.Point(137, 38);
+            this.lblProductoPrecio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblProductoPrecio.Name = "lblProductoPrecio";
+            this.lblProductoPrecio.Size = new System.Drawing.Size(0, 20);
+            this.lblProductoPrecio.TabIndex = 19;
             // 
-            // lblNombre
+            // label5
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(11, 50);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(65, 20);
-            this.lblNombre.TabIndex = 12;
-            this.lblNombre.Text = "Nombre";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(137, 15);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 20);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Precio";
             // 
-            // lblApellidoCliente
+            // btnAgregarProducto
             // 
-            this.lblApellidoCliente.AutoSize = true;
-            this.lblApellidoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidoCliente.Location = new System.Drawing.Point(11, 22);
-            this.lblApellidoCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblApellidoCliente.Name = "lblApellidoCliente";
-            this.lblApellidoCliente.Size = new System.Drawing.Size(65, 20);
-            this.lblApellidoCliente.TabIndex = 10;
-            this.lblApellidoCliente.Text = "Apellido";
+            this.btnAgregarProducto.Location = new System.Drawing.Point(344, 17);
+            this.btnAgregarProducto.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAgregarProducto.Name = "btnAgregarProducto";
+            this.btnAgregarProducto.Size = new System.Drawing.Size(62, 38);
+            this.btnAgregarProducto.TabIndex = 16;
+            this.btnAgregarProducto.Text = "Agregar";
+            this.btnAgregarProducto.UseVisualStyleBackColor = true;
+            this.btnAgregarProducto.Click += new System.EventHandler(this.btnAgregarProducto_Click);
             // 
             // grillaProductos
             // 
@@ -287,16 +281,61 @@
             this.grillaProductos.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.grillaProductos_RowsAdded);
             this.grillaProductos.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.grillaProductos_RowsRemoved);
             // 
-            // btnAgregarProducto
+            // Id
             // 
-            this.btnAgregarProducto.Location = new System.Drawing.Point(344, 17);
-            this.btnAgregarProducto.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAgregarProducto.Name = "btnAgregarProducto";
-            this.btnAgregarProducto.Size = new System.Drawing.Size(62, 38);
-            this.btnAgregarProducto.TabIndex = 16;
-            this.btnAgregarProducto.Text = "Agregar";
-            this.btnAgregarProducto.UseVisualStyleBackColor = true;
-            this.btnAgregarProducto.Click += new System.EventHandler(this.btnAgregarProducto_Click);
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            this.Id.Width = 40;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.MinimumWidth = 6;
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            this.Producto.Width = 125;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.MinimumWidth = 6;
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 125;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio X Cantidad";
+            this.Precio.MinimumWidth = 6;
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Width = 125;
+            // 
+            // precioUnitario
+            // 
+            this.precioUnitario.HeaderText = "Precio x Unidad";
+            this.precioUnitario.Name = "precioUnitario";
+            this.precioUnitario.ReadOnly = true;
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(224, 40);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(92, 20);
+            this.txtCantidad.TabIndex = 15;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Location = new System.Drawing.Point(385, 301);
+            this.txtTotal.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(92, 20);
+            this.txtTotal.TabIndex = 19;
             // 
             // lblCantidad
             // 
@@ -310,23 +349,16 @@
             this.lblCantidad.Text = "Cantidad";
             this.lblCantidad.Click += new System.EventHandler(this.lblCantidad_Click);
             // 
-            // txtCantidad
+            // lblTotal
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(224, 40);
-            this.txtCantidad.Margin = new System.Windows.Forms.Padding(2);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(92, 20);
-            this.txtCantidad.TabIndex = 15;
-            // 
-            // cmbProducto
-            // 
-            this.cmbProducto.FormattingEnabled = true;
-            this.cmbProducto.Location = new System.Drawing.Point(14, 37);
-            this.cmbProducto.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbProducto.Name = "cmbProducto";
-            this.cmbProducto.Size = new System.Drawing.Size(92, 21);
-            this.cmbProducto.TabIndex = 10;
-            this.cmbProducto.SelectionChangeCommitted += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(340, 303);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(44, 20);
+            this.lblTotal.TabIndex = 18;
+            this.lblTotal.Text = "Total";
             // 
             // lblProducto
             // 
@@ -338,6 +370,41 @@
             this.lblProducto.Size = new System.Drawing.Size(73, 20);
             this.lblProducto.TabIndex = 11;
             this.lblProducto.Text = "Producto";
+            // 
+            // cmbProducto
+            // 
+            this.cmbProducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbProducto.FormattingEnabled = true;
+            this.cmbProducto.Location = new System.Drawing.Point(14, 37);
+            this.cmbProducto.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbProducto.Name = "cmbProducto";
+            this.cmbProducto.Size = new System.Drawing.Size(92, 21);
+            this.cmbProducto.TabIndex = 10;
+            this.cmbProducto.SelectedIndexChanged += new System.EventHandler(this.cmbProducto_SelectedIndexChanged);
+            this.cmbProducto.SelectionChangeCommitted += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Location = new System.Drawing.Point(11, 50);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(65, 20);
+            this.lblNombre.TabIndex = 12;
+            this.lblNombre.Text = "Nombre";
+            // 
+            // lblApellidoCliente
+            // 
+            this.lblApellidoCliente.AutoSize = true;
+            this.lblApellidoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellidoCliente.Location = new System.Drawing.Point(11, 22);
+            this.lblApellidoCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblApellidoCliente.Name = "lblApellidoCliente";
+            this.lblApellidoCliente.Size = new System.Drawing.Size(65, 20);
+            this.lblApellidoCliente.TabIndex = 10;
+            this.lblApellidoCliente.Text = "Apellido";
             // 
             // btnGuardarCotizacion
             // 
@@ -394,16 +461,25 @@
             this.gpVendedor.Text = "Vendedor";
             this.gpVendedor.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // lblVendedorNombre_
+            // lblVendedorNombre
             // 
-            this.lblVendedorNombre_.AutoSize = true;
-            this.lblVendedorNombre_.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVendedorNombre_.Location = new System.Drawing.Point(16, 50);
-            this.lblVendedorNombre_.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblVendedorNombre_.Name = "lblVendedorNombre_";
-            this.lblVendedorNombre_.Size = new System.Drawing.Size(65, 20);
-            this.lblVendedorNombre_.TabIndex = 9;
-            this.lblVendedorNombre_.Text = "Nombre";
+            this.lblVendedorNombre.AutoSize = true;
+            this.lblVendedorNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVendedorNombre.Location = new System.Drawing.Point(102, 50);
+            this.lblVendedorNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVendedorNombre.Name = "lblVendedorNombre";
+            this.lblVendedorNombre.Size = new System.Drawing.Size(0, 20);
+            this.lblVendedorNombre.TabIndex = 12;
+            // 
+            // lblVendedorDni
+            // 
+            this.lblVendedorDni.AutoSize = true;
+            this.lblVendedorDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVendedorDni.Location = new System.Drawing.Point(102, 75);
+            this.lblVendedorDni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVendedorDni.Name = "lblVendedorDni";
+            this.lblVendedorDni.Size = new System.Drawing.Size(0, 20);
+            this.lblVendedorDni.TabIndex = 11;
             // 
             // label7
             // 
@@ -417,25 +493,16 @@
             this.label7.Text = "DNI";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // lblVendedorDni
+            // lblVendedorNombre_
             // 
-            this.lblVendedorDni.AutoSize = true;
-            this.lblVendedorDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVendedorDni.Location = new System.Drawing.Point(102, 75);
-            this.lblVendedorDni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblVendedorDni.Name = "lblVendedorDni";
-            this.lblVendedorDni.Size = new System.Drawing.Size(0, 20);
-            this.lblVendedorDni.TabIndex = 11;
-            // 
-            // lblVendedorNombre
-            // 
-            this.lblVendedorNombre.AutoSize = true;
-            this.lblVendedorNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVendedorNombre.Location = new System.Drawing.Point(102, 50);
-            this.lblVendedorNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblVendedorNombre.Name = "lblVendedorNombre";
-            this.lblVendedorNombre.Size = new System.Drawing.Size(0, 20);
-            this.lblVendedorNombre.TabIndex = 12;
+            this.lblVendedorNombre_.AutoSize = true;
+            this.lblVendedorNombre_.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVendedorNombre_.Location = new System.Drawing.Point(16, 50);
+            this.lblVendedorNombre_.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVendedorNombre_.Name = "lblVendedorNombre_";
+            this.lblVendedorNombre_.Size = new System.Drawing.Size(65, 20);
+            this.lblVendedorNombre_.TabIndex = 9;
+            this.lblVendedorNombre_.Text = "Nombre";
             // 
             // groupBox1
             // 
@@ -451,66 +518,6 @@
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(137, 15);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 20);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Precio";
-            // 
-            // lblProductoPrecio
-            // 
-            this.lblProductoPrecio.AutoSize = true;
-            this.lblProductoPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductoPrecio.Location = new System.Drawing.Point(137, 38);
-            this.lblProductoPrecio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblProductoPrecio.Name = "lblProductoPrecio";
-            this.lblProductoPrecio.Size = new System.Drawing.Size(0, 20);
-            this.lblProductoPrecio.TabIndex = 19;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            this.Id.Width = 40;
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.MinimumWidth = 6;
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            this.Producto.Width = 125;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.MinimumWidth = 6;
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 125;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio X Cantidad";
-            this.Precio.MinimumWidth = 6;
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            this.Precio.Width = 125;
-            // 
-            // precioUnitario
-            // 
-            this.precioUnitario.HeaderText = "Precio x Unidad";
-            this.precioUnitario.Name = "precioUnitario";
-            this.precioUnitario.ReadOnly = true;
             // 
             // AltaCotizaciones
             // 

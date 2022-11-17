@@ -94,14 +94,13 @@ namespace EmpresaTuLuz.DAO
                 cmd.ExecuteNonQuery();
                 foreach (var producto in listaProd)
                 {
-                    //string consultaCotizacioXDetalle = "INSERT INTO detalle_cotizacion values(@numCotizacion,@cod_producto,@cantidad,@precio)";
-                    string consultaCotizacioXDetalle = "INSERT INTO detalle_cotizacion values(@cod_producto,@precio,@cantidad)";
+                    string consultaCotizacioXDetalle = "INSERT INTO detalle_cotizacion values(@numCotizacion,@cod_producto,@cantidad,@precio)";
                     cmd.Parameters.Clear();
                   //  cmd.Parameters.AddWithValue("@numCotizacion", numCot);
                     cmd.Parameters.AddWithValue("@cod_producto", producto[0]);
                     cmd.Parameters.AddWithValue("@cantidad", producto[1]);
                     cmd.Parameters.AddWithValue("@precio",precio);
-
+                    cmd.Parameters.AddWithValue("@numCotizacion", numCot);
                     cmd.CommandText = consultaCotizacioXDetalle;
                     cmd.ExecuteNonQuery();
                 }
@@ -112,7 +111,7 @@ namespace EmpresaTuLuz.DAO
             catch (Exception e )
             {
 
-               
+                MessageBox.Show(e.Message);
                 objTransaccion.Rollback();
                 return false;
                 ;
@@ -290,6 +289,84 @@ namespace EmpresaTuLuz.DAO
                 cn.Close();
             }
             return resultado;
+        }
+
+        public static DataTable obtenerListadoCotizaciones()
+        {
+            //Crear objeto conexion
+            string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            try
+            {
+                //Crear objeto sql command
+                SqlCommand cmd = new SqlCommand();
+
+                //Escribir consulta SQL
+                string consulta = "SELECT * FROM COTIZACIONES";
+                cmd.Parameters.Clear();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                cn.Open();
+                cmd.Connection = cn;
+
+                DataTable tabla = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public static DataTable obtenerEstadisticaProductoVendido()
+        {
+            //Crear objeto conexion
+            string cadenaConexion = System.Configuration.ConfigurationManager.AppSettings["CadenaBD"];
+            SqlConnection cn = new SqlConnection(cadenaConexion);
+            try
+            {
+                //Crear objeto sql command
+                SqlCommand cmd = new SqlCommand();
+
+                //Escribir consulta SQL
+                string consulta = "SELECT P.NOMBRE AS 'PRODUCTO', COUNT(P.ID) AS 'CANTIDAD' FROM detalle_cotizacion DC JOIN VENTAS V ON DC.numCotizacion = V.cotizacion JOIN PRODUCTOS P ON(P.ID = DC.cod_producto) GROUP BY P.NOMBRE";
+                cmd.Parameters.Clear();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                cn.Open();
+                cmd.Connection = cn;
+
+                DataTable tabla = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+
+                return tabla;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
 
     }

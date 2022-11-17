@@ -8,13 +8,15 @@ namespace EmpresaTuLuz.Entidades
 {
     class Proveedor
     {
-        private int _razon_social;
+        private int _id;
+        private string _razon_social;
         private string _mail;
         private string _telefono;
         private bool _proveedor_activo;
 
-        public Proveedor(int razonSocial, string mail, string telefono, bool activo)
+        public Proveedor(int id, string razonSocial, string mail, string telefono, bool activo)
         {
+            _id = id;
             _razon_social = razonSocial;
             _mail = mail;
             _telefono = telefono;
@@ -25,10 +27,10 @@ namespace EmpresaTuLuz.Entidades
         {
 
         }
-
-        public int Cuit { get { return _razon_social; } set { _razon_social = value; } }
-        public string Nombre { get { return _mail; } set { _mail = value; } }
-        public string Apellido { get { return _telefono; } set { _telefono = value; } }
+        public int Id { get { return _id; } set { _id = value; } }
+        public string RazonSocial { get { return _razon_social; } set { _razon_social = value; } }
+        public string Mail { get { return _mail; } set { _mail = value; } }
+        public string Telefono { get { return _telefono; } set { _telefono = value; } }
         public bool Activo { get { return _proveedor_activo; } set { _proveedor_activo = value; } }
 
 
