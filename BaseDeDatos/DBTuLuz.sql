@@ -1,6 +1,11 @@
-CREATE DATABASE DBTuLuz
-
-USE DBTuLuz
+/*
+BASE DE DATOS:  
+TRABAJO PRACTICO PAV1 - UTN-FRC
+GRUPO 6
+EMPRESA TU LUZ
+*/
+--CREATE DATABASE tuluz;
+USE tuluz;
 
 CREATE TABLE [dbo].[barrios](
 	[barrio_id] [int]  PRIMARY KEY NOT NULL,
@@ -120,91 +125,9 @@ COTIZACION INT NOT NULL,
 --NUMERO_DE_FACTURA VARCHAR(50) NOT NULL,
 CONSTRAINT VENTA_EMPL_FK FOREIGN KEY (EMPLEADO_ID) REFERENCES EMPLEADOS (EMPLEADO_ID),
 CONSTRAINT VENTA_COT_FK FOREIGN KEY (COTIZACION) REFERENCES cotizaciones (numCotizacion),
+
 CONSTRAINT VENTA_FORM_DE_PAGO_FK FOREIGN KEY (FORMA_DE_PAGO_ID) REFERENCES FORMAS_DE_PAGO (FORMA_DE_PAGO_ID)
 );
-
-GO
-INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (1, N'Localidad1', 1)
-INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (2, N'Localidad2', 1)
-INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (3, N'Localidad3', 1)
-INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (4, N'Localidad1', 2)
-INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (5, N'Localidad1', 3)
-GO
-INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (1, N'Barrio1', 1)
-INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (2, N'Barrio2', 1)
-INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (3, N'Barrio3', 1)
-INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (4, N'Barrio1', 2)
-INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (5, N'Barrio1', 3)
-INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (6, N'Barrio1', 4)
-INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (7, N'Barrio1', 5)
-GO
-SET IDENTITY_INSERT [dbo].[clientes] ON 
-
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (1, N'A2345678910', N'Rodrigo', N'Calmalha', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (2, N'B2345S78910', N'Pedro', N'Salinas', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (3, N'C2345W78910', N'Myrella', N'Moncada', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (4, N'DD23W5678910', N'Cindy', N'Jimenez', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (5, N'E2345678910', N'Rodrigo', N'Grados', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (6, N'F2345678910', N'Raul', N'Rodriguez', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (7, N'G2345678910', N'Jose', N'Lopez', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (8, N'H2345678910', N'Miguel', N'Martinez', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (9, N'I2345678910', N'Xiomara', N'Rodriguez', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (10, N'J2345678910', N'Agustina', N'Lopez', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (11, N'K2345678910', N'Lizet', N'Fernandez', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (12, N'L2345678910', N'Maria', N'Fernandez', 0)
-INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (13, N'M2345678910', N'Brigitte', N'Castillo', 0)
-SET IDENTITY_INSERT [dbo].[clientes] OFF
-GO
-SET IDENTITY_INSERT [dbo].[cotizaciones] ON 
-
-INSERT [dbo].[cotizaciones] ([numCotizacion], [id_cliente], [id_vendedor], [estado], [nombreCliente], [apellidoCliente], [fecha], [observaciones], [precioTotal], [motivo_perdida]) VALUES (1, 1, 1, 1, NULL, NULL, CAST(N'2022-10-17T00:00:00.000' AS DateTime), NULL, 2000, NULL)
-INSERT [dbo].[cotizaciones] ([numCotizacion], [id_cliente], [id_vendedor], [estado], [nombreCliente], [apellidoCliente], [fecha], [observaciones], [precioTotal], [motivo_perdida]) VALUES (2, 2, 2, 3, NULL, NULL, CAST(N'2022-10-16T00:00:00.000' AS DateTime), NULL, 3500, NULL)
-SET IDENTITY_INSERT [dbo].[cotizaciones] OFF
-GO
-SET IDENTITY_INSERT [dbo].[empleados] ON 
-
-INSERT [dbo].[empleados] ([empleado_id], [empleado_num_doc], [empleado_tipo_doc], [empleado_nombre], [empleado_apellido], [direccion], [barrio_id], [telefono], [empleado_id_jefe], [empleado_activo]) VALUES (1, 12123465, 1, N'Cristian', N'Flores', N'Tandil 1000', 1, N'351264879', NULL, 0)
-INSERT [dbo].[empleados] ([empleado_id], [empleado_num_doc], [empleado_tipo_doc], [empleado_nombre], [empleado_apellido], [direccion], [barrio_id], [telefono], [empleado_id_jefe], [empleado_activo]) VALUES (2, 15646523, 2, N'Tom', N'Lopez', N'Ituzaingo 2000', 1, N'351123812', 1, 0)
-INSERT [dbo].[empleados] ([empleado_id], [empleado_num_doc], [empleado_tipo_doc], [empleado_nombre], [empleado_apellido], [direccion], [barrio_id], [telefono], [empleado_id_jefe], [empleado_activo]) VALUES (3, 16764543, 1, N'Raul', N'Jimenez', N'Velez 230', 2, N'3516534812', 1, 0)
-SET IDENTITY_INSERT [dbo].[empleados] OFF
-GO
-INSERT [dbo].[estados_cotizaciones] ([id_estado], [descripcion]) VALUES (1, N'Borrador')
-INSERT [dbo].[estados_cotizaciones] ([id_estado], [descripcion]) VALUES (2, N'Pendiente de Aprobacion')
-INSERT [dbo].[estados_cotizaciones] ([id_estado], [descripcion]) VALUES (3, N'Aprobada')
-INSERT [dbo].[estados_cotizaciones] ([id_estado], [descripcion]) VALUES (4, N'Perdida')
-
-GO
-SET IDENTITY_INSERT [dbo].[productos] ON 
-
-INSERT [dbo].[productos] ([id], [nombre], [precio], [cantStock], [id_proveedor], [descripcion]) VALUES (1, N'Linternas', 1200, 500, 1, NULL)
-INSERT [dbo].[productos] ([id], [nombre], [precio], [cantStock], [id_proveedor], [descripcion]) VALUES (2, N'Tubos de Luz', 1602.35, 900, 2, NULL)
-INSERT [dbo].[productos] ([id], [nombre], [precio], [cantStock], [id_proveedor], [descripcion]) VALUES (3, N'Pilas 1200mhA', 305.2, 200, 3, NULL)
-SET IDENTITY_INSERT [dbo].[productos] OFF
-GO
-SET IDENTITY_INSERT [dbo].[proveedores] ON 
-
-INSERT [dbo].[proveedores] ([proveedor_id], [razon_social], [mail], [telefono], [proveedor_activo]) VALUES (1, N'Luminarias S.A.', N'ventas@luminariasac.com', N'3514688795', 0)
-INSERT [dbo].[proveedores] ([proveedor_id], [razon_social], [mail], [telefono], [proveedor_activo]) VALUES (2, N'Foco S.A.', N'ventas@focosac.com', N'3598688795', 0)
-INSERT [dbo].[proveedores] ([proveedor_id], [razon_social], [mail], [telefono], [proveedor_activo]) VALUES (3, N'La Guardia S.R.L', N'guardia@guardia.com', N'3151110920', 1)
-SET IDENTITY_INSERT [dbo].[proveedores] OFF
-GO
-INSERT [dbo].[provincias] ([provincia_id], [nombre]) VALUES (2, N'Buenos Aires')
-INSERT [dbo].[provincias] ([provincia_id], [nombre]) VALUES (1, N'Cordoba')
-INSERT [dbo].[provincias] ([provincia_id], [nombre]) VALUES (3, N'Salta')
-GO
-INSERT [dbo].[tipos_doc] ([tipo_doc_id], [siglas], [nombre]) VALUES (1, N'DNI', N'Documento Nacional de Identidad')
-INSERT [dbo].[tipos_doc] ([tipo_doc_id], [siglas], [nombre]) VALUES (2, N'PAS', N'Pasaporte')
-GO
-SET IDENTITY_INSERT [dbo].[usuarios] ON 
-
-INSERT [dbo].[usuarios] ([usuario_id], [usuario_nombre], [usuario_pass], [empleado_id], [usuario_activo]) VALUES (1, N'admi', N'admi', 1, 1)
-INSERT [dbo].[usuarios] ([usuario_id], [usuario_nombre], [usuario_pass], [empleado_id], [usuario_activo]) VALUES (2, N'user', N'user', 2, 1)
-INSERT [dbo].[usuarios] ([usuario_id], [usuario_nombre], [usuario_pass], [empleado_id], [usuario_activo]) VALUES (3, N'martin', N'123', 1, 1)
-SET IDENTITY_INSERT [dbo].[usuarios] OFF
-GO
-
-
-
 
 GO
 ALTER TABLE [dbo].[clientes] ADD UNIQUE NONCLUSTERED 
@@ -271,3 +194,98 @@ REFERENCES [dbo].[empleados] ([empleado_id])
 GO
 ALTER TABLE [dbo].[usuarios] CHECK CONSTRAINT [usuarios_empleados_fk]
 GO
+GO
+
+
+
+INSERT [dbo].[provincias] ([provincia_id], [nombre]) VALUES (2, N'Buenos Aires')
+INSERT [dbo].[provincias] ([provincia_id], [nombre]) VALUES (1, N'Cordoba')
+INSERT [dbo].[provincias] ([provincia_id], [nombre]) VALUES (3, N'Salta')
+GO
+
+INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (1, N'Localidad1', 1)
+INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (2, N'Localidad2', 1)
+INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (3, N'Localidad3', 1)
+INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (4, N'Localidad1', 2)
+INSERT [dbo].[localidades] ([localidad_id], [nombre], [provincia_id]) VALUES (5, N'Localidad1', 3)
+
+GO
+
+INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (1, N'Barrio1', 1)
+INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (2, N'Barrio2', 1)
+INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (3, N'Barrio3', 1)
+INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (4, N'Barrio1', 2)
+INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (5, N'Barrio1', 3)
+INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (6, N'Barrio1', 4)
+INSERT [dbo].[barrios] ([barrio_id], [nombre], [localidad_id]) VALUES (7, N'Barrio1', 5)
+
+GO
+SET IDENTITY_INSERT [dbo].[clientes] ON 
+
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (1, N'A2345678910', N'Rodrigo', N'Calmalha', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (2, N'B2345S78910', N'Pedro', N'Salinas', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (3, N'C2345W78910', N'Myrella', N'Moncada', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (4, N'DD23W5678910', N'Cindy', N'Jimenez', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (5, N'E2345678910', N'Rodrigo', N'Grados', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (6, N'F2345678910', N'Raul', N'Rodriguez', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (7, N'G2345678910', N'Jose', N'Lopez', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (8, N'H2345678910', N'Miguel', N'Martinez', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (9, N'I2345678910', N'Xiomara', N'Rodriguez', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (10, N'J2345678910', N'Agustina', N'Lopez', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (11, N'K2345678910', N'Lizet', N'Fernandez', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (12, N'L2345678910', N'Maria', N'Fernandez', 0)
+INSERT [dbo].[clientes] ([cliente_id], [cliente_cuit], [cliente_nombre], [cliente_apellido], [cliente_activo]) VALUES (13, N'M2345678910', N'Brigitte', N'Castillo', 0)
+SET IDENTITY_INSERT [dbo].[clientes] OFF
+GO
+SET IDENTITY_INSERT [dbo].[empleados] ON 
+
+INSERT [dbo].[empleados] ([empleado_id], [empleado_num_doc], [empleado_tipo_doc], [empleado_nombre], [empleado_apellido], [direccion], [barrio_id], [telefono], [empleado_id_jefe], [empleado_activo]) VALUES (1, 12123465, 1, N'Cristian', N'Flores', N'Tandil 1000', 1, N'351264879', NULL, 0)
+INSERT [dbo].[empleados] ([empleado_id], [empleado_num_doc], [empleado_tipo_doc], [empleado_nombre], [empleado_apellido], [direccion], [barrio_id], [telefono], [empleado_id_jefe], [empleado_activo]) VALUES (2, 15646523, 2, N'Tom', N'Lopez', N'Ituzaingo 2000', 1, N'351123812', 1, 0)
+INSERT [dbo].[empleados] ([empleado_id], [empleado_num_doc], [empleado_tipo_doc], [empleado_nombre], [empleado_apellido], [direccion], [barrio_id], [telefono], [empleado_id_jefe], [empleado_activo]) VALUES (3, 16764543, 1, N'Raul', N'Jimenez', N'Velez 230', 2, N'3516534812', 1, 0)
+SET IDENTITY_INSERT [dbo].[empleados] OFF
+GO
+INSERT [dbo].[estados_cotizaciones] ([id_estado], [descripcion]) VALUES (1, N'Borrador')
+INSERT [dbo].[estados_cotizaciones] ([id_estado], [descripcion]) VALUES (2, N'Pendiente de Aprobacion')
+INSERT [dbo].[estados_cotizaciones] ([id_estado], [descripcion]) VALUES (3, N'Aprobada')
+INSERT [dbo].[estados_cotizaciones] ([id_estado], [descripcion]) VALUES (4, N'Perdida')
+
+GO
+SET IDENTITY_INSERT [dbo].[cotizaciones] ON 
+
+INSERT [dbo].[cotizaciones] ([numCotizacion], [id_cliente], [id_vendedor], [estado], [nombreCliente], [apellidoCliente], [fecha], [observaciones], [precioTotal], [motivo_perdida]) VALUES (1, 1, 1, 1, NULL, NULL, CAST(N'2022-10-17T00:00:00.000' AS DateTime), NULL, 2000, NULL)
+INSERT [dbo].[cotizaciones] ([numCotizacion], [id_cliente], [id_vendedor], [estado], [nombreCliente], [apellidoCliente], [fecha], [observaciones], [precioTotal], [motivo_perdida]) VALUES (2, 2, 2, 3, NULL, NULL, CAST(N'2022-10-16T00:00:00.000' AS DateTime), NULL, 3500, NULL)
+SET IDENTITY_INSERT [dbo].[cotizaciones] OFF
+GO
+
+
+
+SET IDENTITY_INSERT [dbo].[proveedores] ON 
+
+INSERT [dbo].[proveedores] ([proveedor_id], [razon_social], [mail], [telefono], [proveedor_activo]) VALUES (1, N'Luminarias S.A.', N'ventas@luminariasac.com', N'3514688795', 0)
+INSERT [dbo].[proveedores] ([proveedor_id], [razon_social], [mail], [telefono], [proveedor_activo]) VALUES (2, N'Foco S.A.', N'ventas@focosac.com', N'3598688795', 0)
+INSERT [dbo].[proveedores] ([proveedor_id], [razon_social], [mail], [telefono], [proveedor_activo]) VALUES (3, N'La Guardia S.R.L', N'guardia@guardia.com', N'3151110920', 1)
+SET IDENTITY_INSERT [dbo].[proveedores] OFF
+GO
+SET IDENTITY_INSERT [dbo].[productos] ON 
+
+INSERT [dbo].[productos] ([id], [nombre], [precio], [cantStock], [id_proveedor], [descripcion]) VALUES (1, N'Linternas', 1200, 500, 1, NULL)
+INSERT [dbo].[productos] ([id], [nombre], [precio], [cantStock], [id_proveedor], [descripcion]) VALUES (2, N'Tubos de Luz', 1602.35, 900, 2, NULL)
+INSERT [dbo].[productos] ([id], [nombre], [precio], [cantStock], [id_proveedor], [descripcion]) VALUES (3, N'Pilas 1200mhA', 305.2, 200, 3, NULL)
+SET IDENTITY_INSERT [dbo].[productos] OFF
+GO
+
+
+INSERT [dbo].[tipos_doc] ([tipo_doc_id], [siglas], [nombre]) VALUES (1, N'DNI', N'Documento Nacional de Identidad')
+INSERT [dbo].[tipos_doc] ([tipo_doc_id], [siglas], [nombre]) VALUES (2, N'PAS', N'Pasaporte')
+GO
+SET IDENTITY_INSERT [dbo].[usuarios] ON 
+
+INSERT [dbo].[usuarios] ([usuario_id], [usuario_nombre], [usuario_pass], [empleado_id], [usuario_activo]) VALUES (1, N'admi', N'admi', 1, 0)
+INSERT [dbo].[usuarios] ([usuario_id], [usuario_nombre], [usuario_pass], [empleado_id], [usuario_activo]) VALUES (2, N'user', N'user', 2, 0)
+INSERT [dbo].[usuarios] ([usuario_id], [usuario_nombre], [usuario_pass], [empleado_id], [usuario_activo]) VALUES (3, N'martin', N'123', 1, 0)
+SET IDENTITY_INSERT [dbo].[usuarios] OFF
+GO
+
+INSERT INTO FORMAS_DE_PAGO (FORMA_DE_PAGO_NOMBRE) VALUES ('Efectivo');
+INSERT INTO FORMAS_DE_PAGO (FORMA_DE_PAGO_NOMBRE) VALUES ('Tarjeta Debito');
+INSERT INTO FORMAS_DE_PAGO (FORMA_DE_PAGO_NOMBRE) VALUES ('Tarjeta Credito');
